@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .post-problem-container{
+            height: 50vh;
+            width: 40vw;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: absolute;
+            z-index: 15;
+            top: 50%;
+            left: 50%;
+            margin:  -20vh 0 0 -20vw;
+            box-shadow: 0 0 10px black;
+        }
+        .post-problem-container *{
+            margin: 4px auto;
+        }
+        .post-problem-container input{
+            display: block;
+            width: 30vw;
+            height: 5vh;
+        }
+        .post-problem-container textarea{
+            display: block;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="post-problem-container">
+        <form action="" class="problem">
+            <input type="text" placeholder = "Short title of your problem">
+            <textarea cols="50" rows="10" type="text" placeholder = "Short description of your problem"></textarea>
+            <input type="file" class="upload-image">
+            <input type="submit" name="submit" value="post-problem" class="login-button">
+        </form>
+    </div>
+</body>
+</html>
+

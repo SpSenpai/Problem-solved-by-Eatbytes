@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
+:root{
+    --main-color: #7dd173;
+    --main-color-dark: #1b6f11;
+    --main-color-dark-light: #248719;
+    --text-color: #fff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition: 0.2s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    text-decoration: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+}
+
+.background{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+    position: fixed;
+    z-index: -1;
+}
+
+.background img{
+    width: 100%;
+    opacity: 0.3;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    margin: 4vh 2vw;
+    font-weight: 700;
+    font-size: 1.5rem;
+    width: max-content;
+    display: inline-block;
+    color: white;
+}
+
+.logo span{
+    color: var(--main-color);
+}
+
+.right-nav{
+    margin: 4vh 2vw;
+}
+
+.right-nav button{
+    height: 35px;
+    width: 120px;
+    border-radius: 3px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+
+.right-nav button:nth-child(odd){
+    background-color: var(--main-color-dark);
+}
+.right-nav button:nth-child(odd):hover{
+    background-color: var(--main-color-dark-light);
+}
+.right-nav button:nth-child(even){
+    background-color: transparent;
+    border: 3px solid var(--main-color-dark);
+}
+.right-nav button:nth-child(even):hover{
+    background-color: #1b6f11;
+}
+
+.left-container{
+    margin: 20vh 0 0 10vw;
+}
+
+.left-container h1 span{
+    color: var(--main-color);
+}
+
+.left-container button{
+    text-decoration: none;
+    width: 160px;
+    height: 40px;
+    background-color: var(--main-color-dark);
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    box-shadow: 0 0 10px black;
+    cursor: pointer;
+}
+
+.left-container button:hover{
+    background-color: var(--main-color-dark-light);
+}
+
