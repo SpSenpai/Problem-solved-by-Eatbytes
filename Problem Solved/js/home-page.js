@@ -9,8 +9,6 @@ map.zoomControl.remove();
 
 
 
-
-
 // Basic page controls
 // Sidebar Menu Open close
 let Sidebar = document.querySelector(".sidebar")
