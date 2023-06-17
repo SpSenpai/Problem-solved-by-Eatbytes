@@ -1,3 +1,27 @@
+<?php
+    @include '../php/config.php';
+
+    session_start();
+
+    if(!isset($_SESSION['user_id'])){
+        header('location:login.php');
+    }
+
+    // Post problem
+    if (isset($_POST['submit'])) {
+        $pro_title = mysqli_real_escape_string($conn, $_POST['pro_title']);
+        $pro_description = mysqli_real_escape_string($conn, $_POST['pro_description']);
+        $pro_image = mysqli_real_escape_string($conn, $_POST['pro_image']);
+        $id = $_SESSION['user_id'];
+
+        $insert= "INSERT INTO `problems` (`pro_title`, `pro_description`, `pro_image`, `id`, `pro_date`) VALUES ('$pro_title', '$pro_description', '$pro_image', '$id', current_timestamp());";
+        mysqli_query($conn, $insert);
+
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +38,7 @@
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
     <!-- Css -->
-    <link rel="stylesheet" href="../css/home-page.css">
+    <link rel="stylesheet" href="../css/homepage.css">
 </head>
 <body>
     <div class="black-box"></div>
@@ -23,12 +47,12 @@
         <div class="cross"><i class="fa-solid fa-x"></i></div>
         <div class="profile-img"><img src="../image/rajesh hamal.jpg" alt="profile-pic"></div>
         <div class="sidebar-options">
-            <div class="sidebar-option"><i class="fa-solid fa-user"></i> Rajesh Hamal</div>
+            <div class="sidebar-option"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['user_name']; ?></div>
             <div class="sidebar-option"><i class="fa-solid fa-clock-rotate-left"></i> Work History</div>
             <div class="sidebar-option"><i class="fa-solid fa-key"></i> Privacy and control</div>
             <div class="sidebar-option"><i class="fa-solid fa-question"></i> Help & feedback</div>
             <div class="sidebar-option"><i class="fa-solid fa-gear"></i> Settings</div>
-            <div class="sidebar-option logout-option"><i class="fa-solid fa-right-from-bracket"></i> Log Out</div>
+            <a href="../php/logout.php" class="sidebar-option logout-option"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
         </div>
     </div>
 
@@ -46,7 +70,7 @@
             <div class="ts-item">Doctors</div>
             <div class="ts-item">Plumbers</div>
             <div class="ts-item">Labors</div>
-            <div class="special-item">Post Problem</div>
+            <div class="special-item" id="post-problem-btn">Post Problem</div>
         </div>
 
         <div class="notification"><i class="fa-solid fa-bell"></i></div>
@@ -173,6 +197,16 @@
 
     </div>
 
+
+    <!-- Post Problem div -->
+    <div class="post-problem-container">
+        <form action="" method="post"class="problem">
+            <input type="text" name="pro_title" placeholder = "Short title of your problem">
+            <textarea cols="50" name="pro_description" rows="10" type="text" placeholder = "Short description of your problem"></textarea>
+            <input type="file" name="pro_image" class="upload-image">
+            <input type="submit" name="submit" value="post-problem" class="login-button">
+        </form>
+    </div>
     <!-- Map Area -->
     <div id="map"></div>
 
