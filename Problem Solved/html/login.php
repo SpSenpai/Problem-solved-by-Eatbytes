@@ -13,6 +13,9 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
         $_SESSION['user_id'] = $row['id'];
+        $_SESSION['user_name'] = $row['name'];
+        $_SESSION['user_image'] = $row['image'];
+        echo $row['id'];
         header('location:homepage.php');
     } else {
         $linError[] = 'Incorrect email or password !';

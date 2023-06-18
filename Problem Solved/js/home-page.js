@@ -8,13 +8,39 @@ map.zoomControl.remove();
 
 // Load Profile Details
 let profilePic = document.querySelector(".profile-img");
+let userId = document.querySelector("#id").innerHTML;
 
 
 // Load map 
 let problemsId = []
+var costumeMarker = L.Icon.extend({
+    options: {
+        iconSize:     [40, 40],
+        shadowSize:   [50, 64],
+        iconAnchor:   [20, 40],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
+    }
+});
+var NullMarkor = L.Icon.extend({
+    options: {
+        iconSize: [0, 0],
+    }
+});
 
-loadProblems();
+var mechanicIcon = new costumeMarker({iconUrl: '../icons/mechanic.png'})
+var elecrticianIcon = new costumeMarker({iconUrl: '../icons/electrician.png'})
+var doctorIcon = new costumeMarker({iconUrl: '../icons/doctor.png'})
+var plumberIcon = new costumeMarker({iconUrl: '../icons/plumber.png'})
+var babySitterIcon = new costumeMarker({iconUrl: '../icons/babysitter.png'})
+var locationPointer = new costumeMarker({iconUrl: '../icons/location-pointer.png'})
+var problemIcon = new costumeMarker({iconUrl: '../icons/problem.png'})
+var nullIcon = new NullMarkor()
+let tempIcon = locationPointer
+
+
 loadTalents();
+loadProblems();
 
 
 
@@ -28,9 +54,13 @@ function loadProblems() {
             } else {
                 for (let i in data) {
                     problemsId.push(data[i].user_id);
-                    // var marker = L.marker([data[i].latitude, data[i].longitude]).addTo(map)
+                    tempIcon = problemIcon
+                    if(userId == data[i].user_id){
+                        tempIcon = locationPointer;
+                    }
                     var marker = L.marker([data[i].latitude, data[i].longitude], {
-                        title: data[i].pro_title
+                        title: data[i].pro_title,
+                        icon: tempIcon
                     }).bindPopup(`
                 <div class="search-profile-box pop-up-box">
                 <div class="sp-img"><img src="../image/${data[i].image}" alt=""></div>
@@ -44,7 +74,7 @@ function loadProblems() {
                     <div class="sp-option">Hire me</div>
                     <div class="sp-option">Call Now</div>
                     <div class="sp-option">Message</div>
-                    <div class="sp-option">Details</div>
+                    <div class="sp-option" onclick="setDetails(${data[i].id}, true)">Details</div>
                 </div>
             </div>
                 `, {className: "red-popup"}).addTo(map)
@@ -63,17 +93,42 @@ function loadTalents() {
                 console.log("Empty")
             } else {
                 for (let i in data) {
-                    console.log(data[i].id)
-                    console.log(!problemsId.includes(data[i].id))
-                    if (!problemsId.includes(data[i].id)) {
+                    switch (data[i].skill) {
+                        case 'Doctor':
+                            tempIcon = doctorIcon
+                            break;
+                        case 'Electrician':
+                            tempIcon = elecrticianIcon
+                            break;
+                        case 'Mechanic':
+                            tempIcon = mechanicIcon
+                            break;
+                        case 'Plumber':
+                            tempIcon = plumberIcon
+                            break;
+                        case 'Babysitter':
+                            tempIcon = babySitterIcon
+                            break;
+                    
+                        default:
+                            tempIcon = nullIcon
+                            break;
+                    }
+
+                    if(userId == data[i].id){
+                        tempIcon = locationPointer;
+                    }
+                    
+                    if (!problemsId.includes(data[i].id) || data[i].skill == "None") {
                         let starCode = ""
                         for (let j = 0; j <= data[i].rating; j++) {
                             starCode += "<i class=\"fa-solid fa-star\"></i>\n"
                         }
 
-                        // console.log(data[i].latitude + ", " + data[i].longitude + "\n")
+                        
                         var marker = L.marker([data[i].latitude, data[i].longitude], {
                             title: data[i].name,
+                            icon: tempIcon
                         })
                             .bindPopup(`
                         <div class="search-profile-box pop-up-box">
@@ -92,7 +147,7 @@ function loadTalents() {
                             <div class="sp-option">Hire now</div>
                             <div class="sp-option">Call Now</div>
                             <div class="sp-option">Message</div>
-                            <div class="sp-option">Details</div>
+                            <div class="sp-option" onclick="setDetails(${data[i].id},false)">Details</div>
                         </div>
                         </div>
                         `,).addTo(map)
@@ -104,6 +159,50 @@ function loadTalents() {
         })
 }
 
+
+function setDetails(id, isProblem){
+    if(!isProblem || isProblem){
+        fetch('../php/loadmap.php')
+        .then((response) => response.json())
+        .then((data) => {
+            if (data['empty']) {
+                console.log("Empty")
+            } else {
+                for (let i in data) {
+                    if (data[i].id == id){
+                        let starCode = ""
+                        for (let j = 0; j <= data[i].rating; j++) {
+                            starCode += "<i class=\"fa-solid fa-star\"></i>\n"
+                        }
+                        document.querySelector(".details").innerHTML = `
+                        <img class="bis" src="../image/${data[i].image}" alt="img">
+                        <div class="rating">
+                        ${starCode}
+                        </div>
+                        <h2>${data[i].name}</h2>
+                        <p> <span>Phone</span> : ${data[i].phone}</p>
+                        <p><span>Gmail </span>: ${data[i].email}</p>
+                        <p><span>Addres</span> : ${data[i].address}</p>
+                        <p><span>Joined since</span> : ${data[i].date}</p>
+                        <p><span>Skill</span>: ${data[i].skill}</p>
+                        <p><span>Level</span>: ${data[i].level}</p>
+                        <p><span>Description</span>:
+                        <p class="des">
+                        ${data[i].description}
+                        </p>
+                        </p>
+
+                    `
+                    document.querySelector(".user-details").style.top = "10px"
+                        
+                    }
+                }
+            }
+        }).catch((error) => {
+            console.log("error");
+        })
+    }
+}
 
 
 // Post Problem
@@ -163,3 +262,8 @@ function closeSearchResultBox() {
     searchResultContainer.style.opacity = "0"
     isSearhOpen = false
 }
+
+
+document.querySelector(".cross-user-details").addEventListener("click",()=>{
+    document.querySelector(".user-details").style.top = "-100vh"
+})

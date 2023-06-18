@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
-:root{
+
+:root {
     --main-color: #43803c;
     --main-color-light: #4e9247;
     --background-color: #fff;
     --text-color: #000;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     border: none;
@@ -14,19 +15,22 @@
     font-family: 'Montserrat', sans-serif;
     outline: none;
 }
+
 ::-webkit-scrollbar {
     display: none;
 }
 
-body{
+body {
     box-sizing: border-box;
+    max-height: 100vh;
+    overflow: hidden;
 }
 
-image{
+image {
     width: 100%;
 }
 
-.black-box{
+.black-box {
     height: 100vh;
     width: 100vw;
     background-color: #000;
@@ -37,7 +41,7 @@ image{
     left: 0;
 }
 
-.sidebar{
+.sidebar {
     width: 25vw;
     height: 100vh;
     overflow: none;
@@ -49,7 +53,7 @@ image{
     left: -25vw;
 }
 
-.sidebar .logo{
+.sidebar .logo {
     margin: 5%;
     font-weight: 700;
     font-size: 1.5rem;
@@ -57,11 +61,11 @@ image{
     display: inline-block;
 }
 
-.sidebar .logo span{
+.sidebar .logo span {
     color: var(--main-color);
 }
 
-.sidebar .cross{
+.sidebar .cross , .cross-user-details{
     display: block;
     float: right;
     font-size: 1.2rem;
@@ -70,11 +74,11 @@ image{
     cursor: pointer;
 }
 
-.sidebar .cross:hover{
+.sidebar .cross:hover, .cross-user-details:hover {
     opacity: 1;
 }
 
-.profile-img{
+.profile-img {
     width: 100px;
     height: 100px;
     overflow: hidden;
@@ -86,16 +90,16 @@ image{
     margin: 5%;
 }
 
-.profile-img img{
+.profile-img img {
     height: 100%;
 }
 
-.sidebar-options{
+.sidebar-options {
     display: flex;
     flex-direction: column;
 }
 
-.sidebar-options .sidebar-option{
+.sidebar-options .sidebar-option {
     width: 92%;
     padding: 10px 0 10px 8%;
     display: flex;
@@ -103,16 +107,17 @@ image{
     cursor: pointer;
     margin: 10px none;
 }
-.sidebar-options a{
+
+.sidebar-options a {
     text-decoration: none;
     color: var(--text-color);
 }
 
-.sidebar-options .sidebar-option:hover{
+.sidebar-options .sidebar-option:hover {
     background-color: rgb(206, 206, 206);
 }
 
-.sidebar-options .sidebar-option i{
+.sidebar-options .sidebar-option i {
     font-size: 1.2rem;
     padding: 3px;
     margin: 0 15px 0 0;
@@ -128,7 +133,7 @@ image{
 
 
 /* nav bar */
-.nav-bar{
+.nav-bar {
     width: 100%;
     height: 10vh;
     display: flex;
@@ -136,7 +141,7 @@ image{
     justify-content: space-between;
 }
 
-.nav-bar .search-bar{
+.nav-bar .search-bar {
     display: flex;
     align-items: center;
     height: 70%;
@@ -147,32 +152,35 @@ image{
     border-radius: 3px;
 }
 
-.nav-bar .search-bar *{
+.nav-bar .search-bar * {
     padding: 5px 10px;
 }
 
-.nav-bar .search-bar input{
+.nav-bar .search-bar input {
     width: 20vw;
 }
 
-.nav-bar .search-bar .hamburger,.nav-bar .search-bar .search-glass{
+.nav-bar .search-bar .hamburger,
+.nav-bar .search-bar .search-glass {
     cursor: pointer;
     opacity: 0.7;
     background-color: inherit;
 }
 
-.nav-bar .search-bar .hamburger:hover,.nav-bar .search-bar .search-glass:hover{
+.nav-bar .search-bar .hamburger:hover,
+.nav-bar .search-bar .search-glass:hover {
     opacity: 0.9;
 }
 
 
-.top-searches{
+.top-searches {
     display: flex;
     width: 50vw;
     justify-content: space-between;
 }
 
-.top-searches .ts-item, .top-searches .special-item{
+.top-searches .ts-item,
+.top-searches .special-item {
     padding: 3px 15px;
     background-color: var(--background-color);
     box-shadow: 0px 0px 5px #000;
@@ -180,22 +188,22 @@ image{
     cursor: pointer;
 }
 
-.top-searches .special-item{
+.top-searches .special-item {
     background-color: var(--main-color);
     color: #fff;
 
 }
 
-.top-searches .ts-item:hover{
+.top-searches .ts-item:hover {
     background-color: #ececec;
 }
 
 
-.top-searches .special-item:hover{
+.top-searches .special-item:hover {
     background-color: var(--main-color-light);
 }
 
-.side-logo{
+.side-logo {
     width: 45px;
     height: 45px;
     overflow: hidden;
@@ -208,11 +216,11 @@ image{
     margin-right: 34px;
 }
 
-.side-logo img{
+.side-logo img {
     height: 100%;
 }
 
-.notification{
+.notification {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -223,7 +231,7 @@ image{
     background-color: var(--background-color);
 }
 
-.search-result-container{
+.search-result-container {
     position: absolute;
     z-index: 1;
     left: 4vw;
@@ -241,7 +249,7 @@ image{
     display: none;
 }
 
-.search-profile-box{
+.search-profile-box {
     height: 130px;
     width: 100%;
     display: grid;
@@ -252,38 +260,39 @@ image{
     border-bottom: 1px solid #424242;
 }
 
-.sp-img{
+.sp-img {
     overflow: hidden;
     height: 70px;
     margin: 10px;
     width: 70px;
     display: flex;
     align-items: center;
-    justify-content: center;  
-    border-radius: 50%; 
+    justify-content: center;
+    border-radius: 50%;
     box-shadow: 1px 1px 10px black;
 }
 
-.sp-img img{
+.sp-img img {
     height: 100%;
-    
+
 }
 
-.sp-details{
+.sp-details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
 }
 
-.sp-name{
+.sp-name {
     font-size: 1.2rem;
 }
 
-.sp-proff{
+.sp-proff {
     display: flex;
 }
-.sp-proff .sp-proff-lvl{
+
+.sp-proff .sp-proff-lvl {
     background-color: rgb(92, 0, 92);
     width: min-content;
     padding: 3px 10px;
@@ -293,14 +302,14 @@ image{
     color: white;
 }
 
-.sp-options{
+.sp-options {
     grid-column-start: 1;
     grid-column-end: 3;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
 
-.sp-option{
+.sp-option {
     font-size: 0.8rem;
     margin: 5px;
     padding: 5px;
@@ -313,27 +322,27 @@ image{
     cursor: pointer;
 }
 
-.sp-option:hover{
+.sp-option:hover {
     background-color: #3c3c3c;
 }
 
 
-#map { 
+#map {
     z-index: -1;
     height: 180vh;
     width: 100vw;
     position: absolute;
-    top: 0; 
+    top: 0;
     left: 0;
 }
 
 
-.pop-up-box{
+.pop-up-box {
     width: max-content;
     border-bottom: none;
 }
 
-.post-problem-container{
+.post-problem-container {
     height: 50vh;
     width: 40vw;
     display: flex;
@@ -345,20 +354,23 @@ image{
     z-index: 15;
     top: 50%;
     left: 50%;
-    margin:  -20vh 0 0 -20vw;
+    margin: -20vh 0 0 -20vw;
     box-shadow: 0 0 10px black;
     background-color: var(--background-color);
     display: none;
 }
-.post-problem-container *{
+
+.post-problem-container * {
     margin: 4px auto;
 }
-.post-problem-container input{
+
+.post-problem-container input {
     display: block;
     width: 30vw;
     height: 5vh;
 }
-.post-problem-container textarea{
+
+.post-problem-container textarea {
     display: block;
     resize: none;
 }
@@ -371,7 +383,92 @@ image{
     color: white;
 }
 
-.red-popup .leaflet-popup-content-wrapper .sp-proff-name{
+.red-popup .leaflet-popup-content-wrapper .sp-proff-name {
     font-size: 1.3rem;
     padding-bottom: 5px;
+}
+
+
+.user-details {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    position: absolute;
+    z-index: 999;
+    width: 50vw;
+    top: -100vh;
+    margin: 0 25vw;
+
+}
+
+.user-details .img-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.user-details .bis{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid green;
+}
+
+.user-details h2 {
+    font-size: 24px;
+}
+
+.user-details p {
+    margin-bottom: 8px;
+}
+
+
+.user-details textarea.desc {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.user-details button {
+    padding: 10px 20px;
+    background-color: #0066ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-details button:hover {
+    background-color: #0044cc;
+}
+
+.user-details .des {
+    border: 3px solid green;
+    padding: 5px;
+
+}
+
+.user-details p span {
+    font-weight: bold;
+}
+
+.user-details .rating {
+    margin-top: 10px;
+}
+
+.user-details .star {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("star.png");
+    background-size: cover;
 }

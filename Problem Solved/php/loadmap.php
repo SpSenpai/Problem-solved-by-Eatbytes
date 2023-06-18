@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 
-$sql = "SELECT logininfo.id, logininfo.name, logininfo.email, logininfo.address, logininfo.phone, logininfo.skill, logininfo.level, logininfo.image, logininfo.longitude, logininfo.latitude,logininfo.rating, logininfo.description  FROM logininfo";
+$sql = "SELECT logininfo.id, logininfo.name, logininfo.email, logininfo.address, logininfo.phone, logininfo.skill, logininfo.level, logininfo.image, logininfo.longitude, logininfo.latitude,logininfo.rating, logininfo.description, logininfo.date  FROM logininfo";
 
 $result = mysqli_query($conn, $sql);
 $output = [];
