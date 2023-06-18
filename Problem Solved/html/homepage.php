@@ -211,6 +211,8 @@ if (isset($_POST['submit'])) {
                 placeholder="Short description of your problem"></textarea>
             <input type="file" name="pro_image" class="upload-image">
             <input type="submit" name="submit" value="post-problem" class="login-button">
+            <div class="cross-post-problem"><i class="fa-solid fa-x"></i></div>
+
         </form>
     </div>
     <!-- Map Area -->

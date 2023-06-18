@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
       $insert= "INSERT INTO `logininfo` (`name`, `email`, `password`, `address`, `phone`, `skill`, `level`, `image`, `longitude`, `latitude`, `description`, `dob`, `date`) VALUES ('$name', '$email', '$password', '$address', '$phone', '$skill', '$level', 'luffy.jpeg', '84.514562', '27.612585', '$description', '2001-02-12', current_timestamp())";
 
       mysqli_query($conn, $insert);
-      header('location:homepage.php');
+      header('location:login.php');
     }
   }
 }
@@ -82,11 +82,11 @@ if (isset($_POST['submit'])) {
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="text" placeholder="Enter your password" name="password" required>
+            <input type="password" placeholder="Enter your password" name="password" required>
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="text" placeholder="Confirm your password" name="cpassword" required>
+            <input type="password" placeholder="Confirm your password" name="cpassword" required>
           </div>
         </div>
 
@@ -96,6 +96,8 @@ if (isset($_POST['submit'])) {
         <div class="button">
           <input type="submit" name="submit" value="Create Account">
         </div>
+
+        <p>Already have an account ? <a href="login.php">Login here</a></p>
       </form>
     </div>
   </div>

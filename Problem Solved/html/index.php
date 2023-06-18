@@ -18,10 +18,11 @@
         </div>
 
     </nav>
+
     
     <div class="left-container">
         <h1>Your one step <br><span>solution</span><br>to your problem.</h1>
-        <button href="#">Get started</button>
+        <button onclick="location.href = 'login.php'">Get started</button>
     </div>
 </body>
 </html>

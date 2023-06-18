@@ -133,6 +133,11 @@ form .button input:hover {
   }
 }
 
+
+textarea{
+  resize: none;
+}
+
 @media (max-width: 459px) {
   .container .content .category {
     flex-direction: column;

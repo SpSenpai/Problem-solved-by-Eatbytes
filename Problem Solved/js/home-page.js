@@ -93,6 +93,7 @@ function loadTalents() {
                 console.log("Empty")
             } else {
                 for (let i in data) {
+                    console.log(data[i])
                     switch (data[i].skill) {
                         case 'Doctor':
                             tempIcon = doctorIcon
@@ -155,7 +156,7 @@ function loadTalents() {
                 }
             }
         }).catch((error) => {
-            console.log("error");
+            console.log(error);
         })
 }
 
@@ -208,11 +209,13 @@ function setDetails(id, isProblem){
 // Post Problem
 let postProblemBtn = document.querySelector("#post-problem-btn");
 let postProblemDiv = document.querySelector(".post-problem-container");
+let crossPostProblem = document.querySelector(".cross-post-problem");
 
 postProblemBtn.addEventListener("click", () => {
     postProblemDiv.style.display = "block"
-    // blackBox.style.opacity = "0"
-    // blackBox.style.display = ""
+})
+crossPostProblem.addEventListener("click", () => {
+    postProblemDiv.style.display = "none"
 })
 
 
